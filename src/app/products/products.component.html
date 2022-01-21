@@ -1,0 +1,58 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
+
+  <div class="col-md-6">
+    <h4>Tutorials List</h4>
+
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="
+          let tutorial of tutorials | paginate : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        "
+      >
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{tutorial.imageUrl}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ tutorial.productName }}</h5>
+          <p class="card-text">{{ tutorial.description }}</p>
+          <a href="#" class="btn btn-primary">{{tutorial.price }}</a>
+        </div>
+      </div>
+
+      </li>
+    </ul>
+  </div>
+
+  </div>
